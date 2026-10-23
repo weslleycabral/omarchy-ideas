@@ -2,6 +2,8 @@
 
 Capture ideas from anywhere in [Omarchy](https://omarchy.org). Type an idea in a quick dialog and it is saved right away. In the background, whichever AI agent CLI you have installed fixes the spelling and gives the idea a short title. Your ideas show up as a list of titles behind a lightbulb icon in the top bar, and clicking a title opens the full idea.
 
+![The list of ideas](docs/screenshot.png)
+
 - The interface comes in English, Português, Español and Français
 - The AI keeps each idea in the language you wrote it in
 - Ideas are stored locally in `~/.local/share/omarchy-ideas/ideas.json`
@@ -45,6 +47,7 @@ o.bind("SUPER + SHIFT + I", "Ideas", "omarchy-shell shell toggle weslleycabral.i
 ```bash
 ideas               # open the new-idea box
 ideas list          # open the list
+ideas open <id>     # open one idea
 ideas add "text"    # save an idea from a script
 ideas rm <id>       # delete an idea
 ideas lang pt       # set the language: en, pt, es, fr (default: $LANG)
@@ -64,12 +67,24 @@ If an agent fails or times out, the next one is tried. If none of them answers, 
 
 Requires `python3`, `notify-send` and `wl-copy`, all of which ship with Omarchy.
 
+## Privacy
+
+Ideas are stored only on your computer. To fix the spelling and write a title, though, the text of each new idea is sent to the AI agent that answers, which means it goes to that agent's provider (Anthropic, OpenAI, Google, or whichever provider OpenCode is set up with), under that provider's terms. Nothing else is sent: no other ideas, no files, no system information.
+
+Do not type passwords or other secrets into an idea. If you want nothing sent anywhere, uninstall the agent CLIs or remove them from the `PATH` of your Omarchy session; ideas are then saved exactly as typed.
+
 ## Update
 
 ```bash
 omarchy plugin update weslleycabral.ideas
 ```
 
+See [CHANGELOG.md](CHANGELOG.md) for what changed in each version.
+
+## Contributing
+
+Bug reports, translations and pull requests are welcome. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to set up the plugin for development and how to add a language.
+
 ## License
 
-MIT
+[MIT](LICENSE)

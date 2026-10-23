@@ -49,7 +49,12 @@ Item {
     db.reload()
     settingsFile.reload()
     root.opened = true
-    root.setMode(payload.mode === "new" ? "new" : "list")
+    if (payload.mode === "detail" && payload.id) {
+      root.detailId = payload.id
+      root.setMode("detail")
+    } else {
+      root.setMode(payload.mode === "new" ? "new" : "list")
+    }
   }
 
   function close() {

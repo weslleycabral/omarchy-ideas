@@ -3,6 +3,7 @@
 
   ideas                 open the new-idea box
   ideas list            open the list of ideas
+  ideas open <id>       open one idea
   ideas add <text>      save an idea (the AI fixes it in the background)
   ideas rm <id>         delete an idea
   ideas process <id>    (re)run the AI on an idea
@@ -89,8 +90,8 @@ def fallback_title(text):
     return first if len(first) <= 60 else first[:57].rstrip() + "…"
 
 
-def summon(mode):
-    subprocess.run(["omarchy-shell", "shell", "summon", PLUGIN, json.dumps({"mode": mode})])
+def summon(mode, **extra):
+    subprocess.run(["omarchy-shell", "shell", "summon", PLUGIN, json.dumps({"mode": mode, **extra})])
 
 
 def notify(title, body=""):
@@ -201,6 +202,8 @@ def main():
         summon("new")
     elif cmd in ("list", "lista", "liste"):
         summon("list")
+    elif cmd == "open" and len(args) == 2:
+        summon("detail", id=args[1])
     elif cmd == "add":
         cmd_add(" ".join(args[1:]) if len(args) > 1 else sys.stdin.read())
     elif cmd == "rm" and len(args) == 2:
