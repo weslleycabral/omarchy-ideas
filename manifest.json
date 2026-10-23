@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "weslleycabral.ideas",
+  "name": "Ideas",
+  "version": "1.0.0",
+  "author": "weslleycabral",
+  "license": "MIT",
+  "description": "Quick idea capture in the Omarchy bar; an AI agent fixes the spelling and writes a title.",
+  "kinds": [
+    "overlay",
+    "bar-widget"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "overlay": "Ideas.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Ideas",
+    "description": "Left-click opens the list of ideas, right-click adds a new one.",
+    "category": "Info",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
